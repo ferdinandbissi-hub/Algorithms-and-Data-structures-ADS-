@@ -92,9 +92,46 @@ def unique_qudruplet(nums, target):
 
 # Day 6: Given a string s of '(',')' and lowercase English characters.
 #Your task is to remove the minimum number of parentheses ('('or')'in any positions) 
-# that the resulting parentheses string is valid and return any valid sting.
+# that the resulting parentheses string is valid and return any valid sting
 
-# Day 7: Exercise 7: Given a string s, sort it in decreasing order based on the frequency of the characters. 
+def remove_paren(s):
+    list1 = []
+    list2 = []
+    count1 = 0
+    count2 = 0
+
+    for i in s:
+        if i == "(":
+            count1 += 1
+            list1.append(i)
+        elif i == ")":
+            if count1 == 0:
+                continue
+            else:
+                count1 -= 1
+                list1.append(i)
+        elif i != "(" and i != ")":
+            list1.append(i)
+    
+    for i in reversed(list1):
+        if i == ")":
+            count2 += 1
+            list2.append(i)
+        elif i == "(":
+            if count2 == 0:
+                continue
+            else:
+                count2 -= 1
+                list2.append(i)
+        elif i != "(" and i != ")":
+            list2.append(i)
+    result = "".join(reversed(list2))
+    return result
+s = ")e(n(glish)(("
+res = remove_paren(s)
+print(res)
+
+# Day 7: Given a string s, sort it in decreasing order based on the frequency of the characters. 
 #The frequency of a character is the number of times it appears in the string.
 #Return the sorted string. If there are multiple answers, return any of them
 
