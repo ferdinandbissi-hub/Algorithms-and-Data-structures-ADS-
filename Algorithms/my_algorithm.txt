@@ -1,1 +1,120 @@
+Day 1: Given an array of integers and an integer target, return indices of the two numbers such that they add up to target
 
+algo : return_indices
+var: array
+     target, i,j,n, sum: integers
+begin:
+   arr <- write("input your array of integer")
+   target <- write("input your target")
+   n <- len(array)
+   for i in range(n)
+        for j in range(i+1, n)
+             sum <- array[i] + array[j]
+             if sum == target then
+                print(i,j)
+             else
+                continue
+             end if
+end
+
+Day2: Given an integer array nums, find the subarray with the largest sum, and return its sum
+
+algo: largest_sum
+var: array
+     sum,i, n, integers
+begin
+    array = write("input your array)
+    sum = 0
+    n = len(array)
+    for i range(n)
+       new_sum = sum + array[i]
+       if new_sum > sum then
+       	  sum = new_sum
+       else
+          continue
+       end if
+end
+
+Day 3: Given an array nums with n objects colored red, white, or blue, sort them inplace so that objects of the same color are adjacent, with the colors in the order red, white and blue
+
+# For each color, let's assign a number. 0 = red, 1 = white and 2 = blue
+
+algo: sort_colors
+var: nums, results: array, list
+     r,w,b,n,idx,i: integers. #r,w. and b are for red, white and blue object.
+begin
+    nums = write("input your array containing only 0,1 and 2 as numbers")
+    results = write("create your empty list wich will contains your sorted list")
+    n = len(nums)
+    r,w,b = 0,0,0
+    
+    for i in nums:
+    	if i != 0 and i != 1 and i != 2:
+    		print("Your array should contain only 0,1 and 2")
+    	else:
+	    # Count the number of red, white, blue objects
+	    
+	    for i in range(n):
+		if nums[i] == 0:
+		   r = r+1
+		elif nums[i] == 1:
+		   w = w+1
+		elif nums[i] == 2:
+		   b = b+1
+	    idx = 0
+	    for i in ramge(r):
+		nums[idx] = 0
+		idx = idx+1
+	    for i in range(w):
+		nums[idx] = 1
+		idx = idx+1
+	    for i in range(b):
+		nums[idx] = 2
+		idx = idx+1
+	    print(nums)
+	 endif
+end
+
+Day 4: Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
+0<=a, b,c,d<n
+a,b,c,and d are distinct
+nums[a]+nums[b]+nums[c]+nums[d] == target
+
+algo: quadruplet
+var:    a,b,c,d,n,k: integer
+	nums: array
+	result: list
+	target: integer
+begin
+	nums = write("Enter your array")
+	target = write("Enter your target")
+	n = len(nums)
+	for a in range(n):
+	    for b in range(a+1, n):
+	        for c in range(b+1, n):
+	            for d in range(c+1, n):
+	                if nums[a]+nums[b]+nums[c]+nums[d] == target
+	                	print([a,b,c,d])
+	                else
+	                	print("There is no quadruplet which the sum give the target")
+	                endif
+end
+
+Day 5: Given an array of intervals where intervals[i] = [stati, endi], merge all overlapping intervals, and return and array of the non-overlapping intervals that cover all the intervals in the input.
+
+Algo: array-of-non_overlapping
+var:   interv: Array
+       result:  List
+       s, e:  integers
+begin
+	interv <- write("input your array of intervals")
+	interv <- sort your array of intervals based on the start point
+	result <- write("input an empty list")
+	
+	for s,e in interv:
+	    if result and s <= result[-1][1]: # If result is not empty and the last element of result is geater than s
+		result[-1][1] = max(result[-1][1], e)  # replace this last element of result by e
+	    else: # If result is empty
+	       result.append([s,e])
+	    endif
+end
