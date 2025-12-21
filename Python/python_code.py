@@ -173,3 +173,16 @@ def truefalse(s1, s2):
         else:
             answer = False
     return answer
+
+# Day 9: Given a string s, partition s such that every substring of the partition is a Palindrome. 
+    #Return all possible palindrome partitionning s
+
+def palindrome(s):
+    List1 = []
+
+    for start in range(len(s)):
+        for end in range(start+1, len(s)+1):
+            substring = s[start:end]
+            if substring == substring[::-1]:
+                List1.append(substring)
+    return List1
