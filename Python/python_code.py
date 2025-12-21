@@ -186,3 +186,27 @@ def palindrome(s):
             if substring == substring[::-1]:
                 List1.append(substring)
     return List1
+
+# Given two strings s and t of lengths m and n respectively, return the minimum window substring of s 
+#such that every character in t (including duplicates) is included in the window. if ther is no such substring, return the empty string "".
+def minimum_window(s,t):
+    l1 = []
+    l2 = []
+    result = []
+    if len(s) < len(t):
+        return " "
+    for k in t:
+        l1.append(k)
+    for i in range(len(s)):
+        for j in range(i+1, len(s)+1):
+            l2.append(list(s[i:j]))
+
+    for s in l2:
+        if all(char in s for char in l1):
+            if not result or len(s) < len(result):
+                result = s
+
+    if result:
+        return "".join(result)
+    else:
+        return " "
