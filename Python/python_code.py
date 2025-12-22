@@ -10,7 +10,6 @@ def return_indices(X,Y):
                 return i,j
 
 # Day 2: Given an integer array nums, find the subarray with the largest sum, and return its sum
-import itertools
 def maxsum(nums):
     max_sum = 0
     max_sub_arr = []
@@ -224,6 +223,7 @@ def reverse_list(L):
 
 # Day 13: Given an integer array nums of unique elements, return all possible subsets(the power set). 
 #The solution set must not contain duplicate subsets. Return the solution in any order
+import itertools
 def combinations(nums):
     """ # In this code, l is the number of element in the combination.  For example
     for l = 0, the result is [].
