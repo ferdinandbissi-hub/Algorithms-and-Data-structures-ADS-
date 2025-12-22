@@ -207,3 +207,31 @@ def minimum_window(s,t):
         return "".join(result)
     else:
         return " "
+
+# Day 11: Given the head of a linked list and an integer val, remove all the nodes of the linked list that has Node.val == val 
+#and return the new head
+def linked_list(L,val):
+    for node in L[:]:
+        if node == val:
+            L.remove(node)
+    return L
+
+# Day 12: Given the head of a singly linked list, reverse the list and return the reversed list
+def reverse_list(L):
+    L.reverse()
+    return L
+
+# Day 13: Given an integer array nums of unique elements, return all possible subsets(the power set). 
+#The solution set must not contain duplicate subsets. Return the solution in any order
+def combinations(nums):
+    """ # In this code, l is the number of element in the combination.  For example
+    for l = 0, the result is [].
+    for  l = 1, we have one element per subset: [1], [2], [3].
+    for l = 2, we have two elements per subset : [1, 2], [1, 3], [2, 3].
+    for l = 3, we have three element in the subset : [1, 2, 3].
+        """
+    subset = []
+    for l in range(len(nums)+1):
+        for comb in itertools.combinations(nums, l):
+            subset.append(list(comb))
+    return subset
