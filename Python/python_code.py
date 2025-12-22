@@ -10,6 +10,7 @@ def return_indices(X,Y):
                 return i,j
 
 # Day 2: Given an integer array nums, find the subarray with the largest sum, and return its sum
+import itertools
 def maxsum(nums):
     max_sum = 0
     max_sub_arr = []
