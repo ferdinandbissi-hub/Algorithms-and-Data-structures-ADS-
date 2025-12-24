@@ -236,3 +236,119 @@ def combinations(nums):
         for comb in itertools.combinations(nums, l):
             subset.append(list(comb))
     return subset
+
+    
+#Day 14: Given n pairs of parentheses, write a function to generate all combinations of well-formed parentheses.
+def generate_parentheses(n):
+    """
+    Generate all combinations of well-formed parentheses for n pairs.
+    
+    Args:
+    n (int): The number of pairs of parentheses.
+    
+    Returns:
+    List[str]: A list of all combinations of well-formed parentheses.
+    """
+    result = []
+
+    def generate(current, open_count, close_count):
+        if len(current) == 2 * n:
+            result.append(current)
+            return
+        if open_count < n:
+            generate(current + '(', open_count + 1, close_count)
+
+        if close_count < open_count:
+            generate(current + ')', open_count, close_count + 1)
+
+    generate('', 0, 0)
+    return result
+
+#Day 16: Given an unsorted integer array nums, return the smallest missing positive integer. 
+#You must implement an algorithm that runs in O(n) time and uses constant extra space
+def first_missing_positive(nums):
+    """
+    This function finds the smallest missing positive integer from an unsorted integer array.
+    
+    It rearranges the array so that each positive integer x (if it is within the range 1 to n)
+    is placed at the index x - 1. After rearranging, the function checks the array for the
+    first index where the value does not match its expected value (index + 1).
+    If all values are present, it returns n + 1, where n is the length of the array.
+    """
+    n = len(nums)
+    
+    # Rearranging the array
+    for i in range(n):
+        while 1 <= nums[i] <= n and nums[nums[i] - 1] != nums[i]:
+            # Swap the elements to their correct positions
+            nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
+    
+    # Finding the first missing positive
+    for i in range(n):
+        if nums[i] != i + 1:
+            return i + 1
+            
+    return n + 1
+
+# Day 17: Given an m $\times$ n matrix, return all elements of the matrix in spiral order
+def spiral_order(matrix):
+    """
+    Return all elements of the matrix in spiral order.
+    """
+    if not matrix:
+        return []
+    
+    result = []
+    top, bottom = 0, len(matrix) - 1  
+    left, right = 0, len(matrix[0]) - 1 
+    
+    while top <= bottom and left <= right:
+        for col in range(left, right + 1):
+            result.append(matrix[top][col])
+        top += 1
+        
+        for row in range(top, bottom + 1):
+            result.append(matrix[row][right])
+        right -= 1
+        
+        for col in range(right, left - 1, -1):
+            result.append(matrix[bottom][col])
+        bottom -= 1
+
+        for row in range(bottom, top - 1, -1):
+            result.append(matrix[row][left])
+        left += 1
+            
+    return result
+
+# Determine if a 9 $\times$ 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+#Each row must contain the digits 1-9 without repetition.
+#Each column must contain the digits 1-9 without repetition'
+#Each of the nine 3 $\times$ 3 sub-boxes of the grid must contain the digits 1-9 without repetition
+
+def is_valid_sudoku(board):
+    rows = [set() for _ in range(9)]
+    cols = [set() for _ in range(9)]
+    boxes = [set() for _ in range(9)]
+
+    for i in range(9):
+        for j in range(9):
+            num = board[i][j]
+            if num != '.':
+                # Check row
+                if num in rows[i]:
+                    return False
+                rows[i].add(num)
+
+                # Check column
+                if num in cols[j]:
+                    return False
+                cols[j].add(num)
+
+                # Check box
+                box_index = (i // 3) * 3 + (j // 3)
+                if num in boxes[box_index]:
+                    return False
+                boxes[box_index].add(num)
+
+    return True
