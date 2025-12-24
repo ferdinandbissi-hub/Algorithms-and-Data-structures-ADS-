@@ -320,8 +320,8 @@ def spiral_order(matrix):
         left += 1
             
     return result
-
-# Determine if a 9 $\times$ 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+    
+#Day 18: Determine if a 9 $\times$ 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
 #Each row must contain the digits 1-9 without repetition.
 #Each column must contain the digits 1-9 without repetition'
 #Each of the nine 3 $\times$ 3 sub-boxes of the grid must contain the digits 1-9 without repetition
